@@ -15,6 +15,14 @@ class Calculadora {
     public function subtracao(): float {
         return $this->num1 - $this->num2;
     }
+
+    public function multiplicacao(): float {
+        return $this->num1 * $this->num2;
+    }
+
+    public function divisao(): string {
+        return ($this->num2 != 0) ? (string)($this->num1 / $this->num2) : "Erro: divisão por zero!";
+    }
 }
 
 $resultado = "";
@@ -30,9 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = "Resultado: " . $calculadora->soma();
     } elseif ($operacao == "subtracao") {
         $resultado = "Resultado: " . $calculadora->subtracao();
+    } elseif ($operacao == "multiplicacao") {
+        $resultado = "Resultado: " . $calculadora->multiplicacao();
+    } elseif ($operacao == "divisao") {
+        $resultado = "Resultado: " . $calculadora->divisao();
     } else {
         $resultado = "Operação inválida.";
     }
+    
 }
 ?>
 
@@ -56,6 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="operacao">
             <option value="soma">Soma</option>
             <option value="subtracao">Subtração</option>
+            <option value="multiplicacao">Multiplicação</option>
+            <option value="divisao">Divisão</option>
         </select><br><br>
 
         <button type="submit">Calcular</button>
